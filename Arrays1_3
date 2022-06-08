@@ -1,0 +1,40 @@
+NEXT PERMUTATION CODE
+
+1) Generate all permutations of given string, return next string of given string
+
+2) use next_permutation(arr,arr+n) STL method
+
+
+3)Optimized appoach:
+  STEP 1 : Traverse from end of array and find the index that satisfies the condition ARR[ind] < ARR[ind] (store index in k)
+  STEP 2 : If index is equal to -1(means index not found) then, reverse the given array and return that.(Ex : 321 -> 123)
+  STEP 3 : Else traverse from the end of array and find the index that satisfies the condition ARR[ind] > ARR[k]
+  STEP 4 : swap ARR[k] , ARR[l]
+  STEP 4 : Reverse the array portion from (k+1)th index to end, and return array
+
+
+class Solution {
+public:
+    void nextPermutation(vector<int>& nums) {
+        int n = nums.size();
+        int k,l;
+        for(k=n-2;k>=0;k--){
+            if(nums[k] < nums[k+1]){
+                break;
+            }
+        }
+        if(k<0){
+            reverse(nums.begin(),nums.end());
+        }
+        else{
+            for(l=n-1;l>k;l--){
+                if(nums[l] > nums[k]){
+                    break;
+                }
+            }
+            swap(nums[k],nums[l]);
+            reverse(nums.begin()+k+1,nums.end());
+        }
+        
+    }
+};
