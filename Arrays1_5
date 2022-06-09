@@ -1,0 +1,41 @@
+SORTING AN ARRAY CONTAINING 0'S,1'S,2'S WITHOUT USING SORT INBUILT FUNCTION:
+
+1) Using Counting Sort : O(2N)-Two Pass
+
+Count number of 0'S,1'S,2'S in array, then overwrite the array with 0'S,1'S,2'S respectively
+
+2)OPTIMAL SOLUTION : 
+
+Using DUTCH NATIONAL FLAG ALGORITHM.......
+
+class Solution {
+public:
+    void sortColors(vector<int>& nums) {
+    
+        //DUTCH NATIONAL FLAG ALGORITHM
+        int lo = 0;
+        int mid = 0;
+        int hi = nums.size()-1;
+        
+        while(mid <= hi){
+            switch(nums[mid]){
+                    
+                //IF THE ELEMENT IS 0
+                case 0 :
+                    swap(nums[lo++],nums[mid++]);
+                    break;
+                    
+                //IF THE ELEMENT IS 1
+                case 1 :
+                    mid++;
+                    break;
+                    
+                //IF THE ELEMENT IS 2
+                case 2 :
+                    swap(nums[mid],nums[hi--]);
+                    break;
+            }
+        }
+        
+    }
+};
