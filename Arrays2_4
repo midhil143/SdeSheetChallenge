@@ -1,0 +1,34 @@
+1) sort the array, traverse the array then if arr[i] == arr[i+1] then return arr[i]
+   TC -> O(NLOGN)
+   
+2) using Hashing, 
+  TC -> O(N)
+  SC -> O(N)
+
+
+3) using slow and fast pointers
+   TC -> O(N)
+   
+
+int findDuplicate(vector<int>& nums) {
+        //place the both slow and fast pointers at starting of array
+        int slow = nums[0];
+        int fast = nums[0];
+        
+        //move slow ptr one step and fast ptr one step until both are equal
+        do{
+            slow = nums[slow];
+            fast = nums[nums[fast]];
+        }while(slow != fast);
+        
+        
+        //place fast ptr at start , move both ptrs one step until they are equal
+        fast = nums[0];
+        
+        while(slow != fast){
+            slow = nums[slow];
+            fast = nums[fast];
+        }
+        return slow;
+        
+}
