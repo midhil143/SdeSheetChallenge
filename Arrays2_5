@@ -1,0 +1,44 @@
+//Find the repeating and missing numbers
+
+1) Using Count sort:
+    int n = A.size();
+    int arr[n+1];
+    memset(arr,0,sizeof(arr));
+    arr[0] = -1;
+    
+    for(int i=0;i<n;i++){
+        arr[A[i]]++;
+    }
+    vector<int> v;
+    for(int i=0;i<=n;i++){
+        if(arr[i] == 2){
+            v.push_back(i);
+        }
+    }
+    for(int i=0;i<=n;i++){
+        if(arr[i] == 0){
+            v.push_back(i);
+        }
+    }
+    return v;
+    
+2) Using Maths :
+
+    long long int n = A.size();
+    long long int S = (n*(n+1))/2;
+    long long int P = (n*(n+1)*(2*n+1))/6;
+    
+    for(int i=0;i<n;i++){
+        S -= (long long int)A[i];
+        P -= (long long int)(A[i])*(long long int)(A[i]);
+    }
+    
+    long long int missNum = (S+P/S)/2;
+    long long int reapNum = missNum - S;
+    
+    vector<int> v;
+    v.push_back(reapNum);
+    v.push_back(missNum);
+    return v;
+
+3) Implement in xor !
